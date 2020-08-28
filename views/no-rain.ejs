@@ -1,0 +1,171 @@
+<%- include ('partials/header'); -%> 
+	<main class="main-page">
+		
+		<div class="container title">
+			<h1 class="heading">No, it's not raining in Manchester.</h1>
+			<p class="lead">Well... not right now, best take the brolly out just in case.</p>
+		</div>
+
+		<div class="row">
+
+			<div class="col-xl-6 order-xl-2">
+				<div class="weather-display">
+					<svg version="1.1" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+						<% if(timeNow > weatherData.sys.sunrise && timeNow < weatherData.sys.sunset){ %>
+							<%- include ('partials/sun'); -%>
+						<% } else { %>
+							<%- include ('partials/moon'); -%>
+						<% }; %>
+		
+						<% if(weatherData.weather[0].id === 800){ %>
+							<% if(timeNow > weatherData.sys.sunrise && timeNow < weatherData.sys.sunset){ %>
+								<%- include ('partials/sunrays') -%>
+							<% }; %>
+						<% } else { %>
+							<path id="cloud" d="m571.48 87.794a155.92 144.58 0 0 1 144.77 91.513 134.66 144.58 0 0 1 60.496-15.413 134.66 144.58 0 0 1 134.66 144.58 134.66 144.58 0 0 1-7e-3 1.9039 108.08 116.05 0 0 1 88.602 114.15 108.08 116.05 0 0 1-106.31 116.03v0.014h-775.24a111.62 119.85 0 0 1-6.8165 0.22347 111.62 119.85 0 0 1-6.7633-0.22345h-3.1594v-0.25512a111.62 119.85 0 0 1-101.71-119.37 111.62 119.85 0 0 1 111.07-119.85 134.66 133.17 0 0 1 123.52-80.131 134.66 133.17 0 0 1 43.545 7.1576 104.54 112.24 0 0 1 99.968-79.45 104.54 112.24 0 0 1 54.935 16.75 155.92 144.58 0 0 1 138.19-77.629 155.92 144.58 0 0 1 0.25736 0z" fill="#fff" stroke-width="1.0231"/>
+						<% }; %>
+					</svg>
+					<script src="/js/sunAnimation.js"></script>
+				</div>
+			</div>
+
+			<div class="col-xl-6 order-xl-1 align-self-end">
+				<div class="card-container">
+
+					<div class="card">
+						<div class="card-header text-center">
+							Other weather happening in Manchester now:
+						</div>
+						<div class="card-body">
+							
+							<div class="row no-gutters">
+								
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Temperature
+										</div>
+										<div class="col value-col">
+											<%= Math.round(weatherData.main.temp * 10) / 10 %>&#176;C
+										</div>
+									</div>
+								</div>
+			
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Feels Like
+										</div>
+										<div class="col value-col">
+											<%= Math.round(weatherData.main.feels_like * 10) / 10 %>&#176;C
+										</div>
+									</div>	
+								</div>
+			
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Pressure
+										</div>
+										<div class="col value-col">
+											<%= weatherData.main.pressure %>hPa
+										</div>
+									</div>	
+								</div>
+			
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Humidity
+										</div>
+										<div class="col value-col">
+											<%= weatherData.main.humidity %>%
+										</div>
+									</div>
+								</div>
+									
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Sunrise
+										</div>
+										<div class="col value-col">
+											<%= sunrise %>
+										</div>
+									</div>
+								</div>
+		
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Sunset
+										</div>
+										<div class="col value-col">
+											<%= sunset %>
+										</div>
+									</div>
+								</div>
+		
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Cloud Cover
+										</div>
+										<div class="col value-col">
+											<%= weatherData.clouds.all %>%
+										</div>
+									</div>
+								</div>
+		
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="col col-1 bullet-col">
+											<img src="/img/umbrella-small.png" alt="umbrella-icon" class="umbrella-icon">
+										</div>
+										<div class="col col-6">
+											Visibility
+										</div>
+										<div class="col value-col">
+											<%= weatherData.visibility / 1000 %>km
+										</div>
+									</div>
+								</div>
+			
+								<% if (Object.keys(weatherData).includes('wind')){ %>
+									<%- include ('partials/wind-data'); -%>
+								<% }; %>
+		
+							</div>
+			
+						</div>
+					</div>
+			
+				</div>
+			</div>
+				
+		</div>
+		
+	</main>
+
+<%- include ('partials/footer'); -%> 

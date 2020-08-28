@@ -1,0 +1,170 @@
+html > * {
+	font-family: Spartan, Helvetica, Arial, "Helvetica Neue", Roboto, sans-serif;
+	font-weight: 300;
+	color: #000;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: #e9ecef;
+}
+
+.main-page {
+	padding: 1.5rem;
+	min-height: 100%;
+}
+
+/* Title section */
+.title {
+	padding: 0;
+	margin-top: 30px;
+    margin-bottom: -30px;
+}
+
+.heading {
+	font-weight: 500;
+	font-size: 3rem;
+}
+
+/* Weather Display */
+.weather-display {
+	margin: auto;
+	padding: 0 20px;
+	width: 80%;
+}
+
+svg {
+	overflow: visible;
+}
+
+/* Weather Card */
+.card-container {
+	margin: auto;
+}
+
+.umbrella-icon {
+	width: 16px;
+	height: 16px;
+}
+
+.no-gutters > .col-sm-6 > .row {
+	padding-bottom: 0.25rem;
+}
+
+.bullet-col {
+	margin-right: 1rem;
+	margin-top: -0.1rem;
+	text-align: right;
+}
+
+.value-col {
+	font-family: "Roboto Mono", monospace;
+	font-weight: 300;
+	margin-left: -1rem;
+	margin-top: -0.05rem;
+}
+
+/* Footer Section */
+footer {
+	width: 100%;
+	background-color: #fff;
+	text-align: center;
+	padding: 1.5rem;
+}
+
+.footer-text {
+	font-weight: 200;
+	padding: 0.5rem;
+	margin: 0;
+}
+
+/* Rain Animation */
+@keyframes rainfall {
+	0% { 
+		transform-origin: 0 0;
+	}
+	90% { 
+		opacity: 1
+	}
+	100% { 
+		transform-origin: 0 60%;
+		opacity: 0; 
+	}
+}
+
+.rainfall {
+	animation-duration: 750ms;
+	animation-name: rainfall;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+/* Sun Animation */
+@keyframes sunrays {
+	50% {
+		transform: scale(0.8);
+	}
+}
+
+@keyframes sun-rotate {
+	25%{
+		transform: rotate(90deg);
+	}
+	50%{
+		transform: rotate(180deg);
+	}
+	75%{
+		transform: rotate(270deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+
+.sun-rotate {
+	animation-duration: 8000ms;
+	animation-name: sun-rotate;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(.2,0.1,.8,0.9);
+}
+
+.sunshine {
+	animation-duration: 2000ms;
+	animation-name: sunrays;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+#sunrays1,
+#sunrays2,
+#sunrays1 > *,
+#sunrays2 > * {
+	transform-origin: 50% 50%;
+}
+
+/* Fix for jerky rendering in Firefox */
+#rain > * {
+	will-change: transform
+}
+  
+/* Media Queries */
+
+
+@media(min-width: 1200px){
+
+	.heading {
+		font-size: 4rem;
+	}
+
+	.title, .card-container {
+		margin-left: 50px;
+	}
+
+	.card-container {
+		max-width: 80%;
+	}
+}

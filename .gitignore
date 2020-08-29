@@ -1,5 +1,11 @@
 # Dependencies
 /node_modules
 
+# Logs
+npm-debug.log
+
 # Environment variables
-.env
+/*.env
+
+# Misc
+.DS_Store

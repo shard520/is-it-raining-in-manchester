@@ -37,10 +37,6 @@ body {
 	width: 80%;
 }
 
-svg {
-	overflow: visible;
-}
-
 /* Weather Card */
 .card-container {
 	margin: auto;
@@ -83,31 +79,42 @@ footer {
 }
 
 /* Rain Animation */
-@keyframes rainfall {
-	0% { 
-		transform-origin: 0 0;
-	}
-	90% { 
-		opacity: 1
-	}
-	100% { 
-		transform-origin: 0 60%;
-		opacity: 0; 
-	}
-}
-
 .rainfall {
-	animation-duration: 750ms;
-	animation-name: rainfall;
+	animation-duration: 1000ms;
+	animation-name: rain;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in;
 }
 
+@keyframes rain {
+	90% { 
+		opacity: 1;
+	}
+	100% { 
+		opacity: 0; 
+		transform: translate(0, 100%);
+	}
+}
+
 /* Sun Animation */
+.sunshine {
+	animation-duration: 2000ms;
+	animation-name: sunrays;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
 @keyframes sunrays {
 	50% {
 		transform: scale(0.8);
 	}
+}
+
+.sun-rotate {
+	animation-duration: 8000ms;
+	animation-name: sun-rotate;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(.2,0.1,.8,0.9);
 }
 
 @keyframes sun-rotate {
@@ -125,20 +132,6 @@ footer {
 	}
 }
 
-.sun-rotate {
-	animation-duration: 8000ms;
-	animation-name: sun-rotate;
-	animation-iteration-count: infinite;
-	animation-timing-function: cubic-bezier(.2,0.1,.8,0.9);
-}
-
-.sunshine {
-	animation-duration: 2000ms;
-	animation-name: sunrays;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-}
-
 #sunrays1,
 #sunrays2,
 #sunrays1 > *,
@@ -152,8 +145,6 @@ footer {
 }
   
 /* Media Queries */
-
-
 @media(min-width: 1200px){
 
 	.heading {

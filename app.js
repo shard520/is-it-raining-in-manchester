@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-	
+
 	const city = '2643123';
 	const appid = process.env.API_KEY;
 	const url = 'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + appid + '&units=metric';
@@ -32,27 +32,20 @@ app.get('/', (req, res) => {
 			const timeNow = Math.floor(Date.now() / 1000);
 			const sunrise = time.convertTo24Hr(weatherData.timezone, weatherData.sys.sunrise);
 			const sunset = time.convertTo24Hr(weatherData.timezone, weatherData.sys.sunset);
-			
+			const options = {
+				weatherData: weatherData,
+				timeNow: timeNow,
+				title: 'Is it raining in Manchester?',
+				sunrise: sunrise,
+				sunset: sunset,
+			};
+
 			if (weatherDescription.includes('rain')){
-				res.render('rain', {
-					weatherData: weatherData,
-					timeNow: timeNow,
-					title: "Yes, it's Raining in Manchester",
-					sunrise: sunrise,
-					sunset: sunset,
-				});
+				res.render('rain', options);
 			}	else {
-					res.render('no-rain', {
-						weatherData: weatherData,
-						timeNow: timeNow,
-						title: "No, it's Not Raining in Manchester",
-						sunrise: sunrise,
-						sunset: sunset,
-					});
+					res.render('no-rain', options);
 				};
 				
-			console.log(weatherData);
-
 		});
 				
 	});
@@ -76,5 +69,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, () => {
-	console.log('Server started successfully on port ' + `${port}`);
+	console.log('Server started successfully on port ' + port);
 });
